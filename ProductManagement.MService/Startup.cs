@@ -1,12 +1,16 @@
 using MassTransit;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ProductManagement.Business.Product.Handlers;
+using ProductManagement.Data.Ef;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,11 +37,11 @@ namespace ProductManagement.MService
             services.AddDbContext<ProductManagementContext>(options =>
 
               options.UseSqlServer(conn));//appjson alýnack
-            services.AddMediator(typeof(SackHandlers));
+            services.AddMediatR(typeof(GeneralProductOperationeHandlers));
             //  services.TryAddSingleton<ILogCommand, ILogCommand>();
             services.AddSwaggerGen();
             services.AddControllers();
-            services.AddAutoMapper(typeof(VehicleModel));
+           // services.AddAutoMapper(typeof(VehicleModel));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
