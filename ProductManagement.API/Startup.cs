@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ProductManagement.API.Service;
+using ProductManagement.API.Services;
 using ProductManagement.Business.Product.Handlers;
 
 namespace ProductManagement.API

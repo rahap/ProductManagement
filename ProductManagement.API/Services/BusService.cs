@@ -3,7 +3,7 @@ using Microsoft.Extensions.Hosting;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ProductManagement.API.Service
+namespace ProductManagement.API.Services
 {
     //arka planda  servisim ayağa kalkması için gerekli
     //bus start- stop süreçlerini yönetiminde  kullanıyoruz.
