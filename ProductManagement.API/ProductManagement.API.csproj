@@ -15,5 +15,12 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Messaging.InterfacesConstants\Messaging.InterfacesConstants.csproj" />
+    <ProjectReference Include="..\ProductManagement.Business\ProductManagement.Business.csproj" />
+    <ProjectReference Include="..\ProductManagement.Utils\ProductManagement.Utils.csproj" />
+    <ProjectReference Include="..\SharedModels\SharedModels.csproj" />
+  </ItemGroup>
+
 
 </Project>

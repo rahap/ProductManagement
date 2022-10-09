@@ -15,4 +15,11 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Messaging.InterfacesConstants\Messaging.InterfacesConstants.csproj" />
+    <ProjectReference Include="..\ProductManagement.Data\ProductManagement.Data.csproj" />
+    <ProjectReference Include="..\ProductManagement.Utils\ProductManagement.Utils.csproj" />
+    <ProjectReference Include="..\SharedModels\SharedModels.csproj" />
+  </ItemGroup>
+
 </Project>
