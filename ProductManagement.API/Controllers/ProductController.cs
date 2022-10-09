@@ -1,5 +1,8 @@
 ﻿using MassTransit;
+using MediatR;
+using Messaging.InterfacesConstants.Constants;
 using Microsoft.AspNetCore.Mvc;
+using SharedModels.Product.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +15,27 @@ namespace ProductManagement.API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IBusControl _busControl;
+        private  readonly IMediator _mediator;
 
-            public ProductController(IBusControl busControl)
+     
+        public ProductController(IBusControl busControl, IMediator mediator)
         {
             _busControl = busControl;
+            _mediator = mediator;
         }
 
         [HttpPost]
-        public ActionResult RegisterProduction()
+        public async Task<IActionResult> RegisterProduction(CreateProductCommand command)
         {
+
+          
+            await _mediator.Send(command);
+            var sendToUri = new Uri($"{RabbitMqMassTransitConstants.RabbitMqUrl }" +
+
+                 $"{RabbitMqMassTransitConstants.RegisterProductServiceQueue}");
+
+            var endPoint = await _busControl.GetSendEndpoint(sendToUri);
+            await endPoint.Send<CreateProductCommand>(command);
             return Ok();
         }
     }

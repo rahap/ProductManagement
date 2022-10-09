@@ -13,9 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.Business"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedModels", "SharedModels\SharedModels.csproj", "{6F35FED2-3162-4CE1-AFD4-4A69A890A67C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.Data", "ProductManagement.Data\ProductManagement.Data.csproj", "{80C6A97B-42AE-468B-91B2-4607DF2205B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.Data", "ProductManagement.Data\ProductManagement.Data.csproj", "{80C6A97B-42AE-468B-91B2-4607DF2205B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.Utils", "ProductManagement.Utils\ProductManagement.Utils.csproj", "{4AB827E3-2E35-4848-8FFF-B051DE83CB2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.Utils", "ProductManagement.Utils\ProductManagement.Utils.csproj", "{4AB827E3-2E35-4848-8FFF-B051DE83CB2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

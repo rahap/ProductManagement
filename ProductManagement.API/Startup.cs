@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using MassTransit;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProductManagement.API.Service;
+using ProductManagement.Business.Product.Handlers;
 
 namespace ProductManagement.API
 {
@@ -51,6 +53,7 @@ namespace ProductManagement.API
             { options.AddPolicy("CorsPolicy",
                  builder => builder.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed((host) => true).AllowCredentials());
             });
+            services.AddMediatR(typeof(GeneralProductOperationeHandlers));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
