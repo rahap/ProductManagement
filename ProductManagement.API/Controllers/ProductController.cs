@@ -27,16 +27,22 @@ namespace ProductManagement.API.Controllers
         [HttpPost]
         public async Task<IActionResult> RegisterProduction(CreateProductCommand command)
         {
+            try
+            {
 
-          
-            await _mediator.Send(command);
-            var sendToUri = new Uri($"{RabbitMqMassTransitConstants.RabbitMqUrl }" +
+                //await _mediator.Send(command);
+                var sendToUri = new Uri($"{RabbitMqMassTransitConstants.RabbitMqUrl }" +
 
-                 $"{RabbitMqMassTransitConstants.RegisterProductServiceQueue}");
+                     $"{RabbitMqMassTransitConstants.RegisterProductServiceQueue}");
 
-            var endPoint = await _busControl.GetSendEndpoint(sendToUri);
-            await endPoint.Send<CreateProductCommand>(command);
-            return Ok();
+                var endPoint = await _busControl.GetSendEndpoint(sendToUri);
+               
+                await endPoint.Send<CreateProductCommand>(command);
+                return Ok();
+            }catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Messaging.InterfacesConstants.Commands;
 using SharedModels.Store.Responses;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,8 @@ using System.Text;
 
 namespace SharedModels.Store.Commands
 {
-   public class CreateStoreProductCommand : IRequest<PmResponseModel<CreateStoreProductResponse>>
+   public class CreateStoreProductCommand : ICommandMassegeBase,IRequest<PmResponseModel<CreateStoreProductResponse>>
     {
+        public int ProductId { get; set; }
     }
 }

@@ -9,6 +9,6 @@ namespace Messaging.InterfacesConstants.Constants
         public const string RabbitMqUrl = "rabbitmq://rabbitmq:5672";
         public const string User = "guest";
         public const string Password = "guest";
-        public const string RegisterProductServiceQueue = "register.product.command";
+        public const string RegisterProductServiceQueue = "/register.product.command";
     }
 }
