@@ -1,4 +1,5 @@
-﻿using ProductManagement.Data.Ef;
+﻿using FleetManagement.Utils;
+using ProductManagement.Data.Ef;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -26,7 +27,7 @@ namespace ProductManagement.Data.Entities
         }
 
 
-        [ValidatorAttributes.RequiredAttribute(Constants.Exception.NotFoundDeliveryCenterName]
+        [ValidatorAttributes.RequiredAttribute(Constants.Exception.NotFoundProductName)]
         public virtual string Name { get; set; }
 
     

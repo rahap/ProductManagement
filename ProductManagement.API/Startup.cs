@@ -41,6 +41,7 @@ namespace ProductManagement.API
             //    //// or sagas
             //    //c.AddSaga<MySaga>();
             //});
+     
             services.AddSingleton(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
              {
                  cfg.Host("localhost", "/", h => { });

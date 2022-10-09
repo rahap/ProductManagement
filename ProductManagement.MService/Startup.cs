@@ -14,9 +14,11 @@ using ProductManagement.Business.Product.Handlers;
 using ProductManagement.Data.Ef;
 using ProductManagement.MService.Messages.Consumers;
 using ProductManagement.MService.Services;
+using SharedModels.Product.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ProductManagement.MService
@@ -34,52 +36,65 @@ namespace ProductManagement.MService
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddHttpClient();
+            var conn = Configuration.GetConnectionString("ProductDbConnecton");
+
+            services.AddDbContext<ProductManagementContext>(options =>
+
+              options.UseSqlServer(conn));//appjson alýnack
+            services.AddMediatR(typeof(GeneralProductOperationeHandlers));
+            //  services.TryAddSingleton<ILogCommand, ILogCommand>();
+            services.AddSwaggerGen();
             services.AddMassTransit(config =>
             {
                 config.AddConsumer<RegisterProductCommandConsumer>();
-                // config.AddConsumer<DenemeCommandConsumer>();
+
                 config.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
-                    cfg.Host(new Uri(RabbitMqMassTransitConstants.RabbitMqUrl), hostConfigurator =>
-                    {
-                        hostConfigurator.Username(RabbitMqMassTransitConstants.User);
-                        hostConfigurator.Password(RabbitMqMassTransitConstants.Password);
-                        //hostConfigurator.UseCluster(cluster =>
-                        //{
-                        //    var nodes = rabbitConfig.Node.Split(",");
-                        //    foreach (var node in nodes)
-                        //    {
-                        //        cluster.Node(node);
-                        //    }
-                        //});
-                    });
-
+                    cfg.Host("localhost", "/", h => { });
                     cfg.ReceiveEndpoint(RabbitMqMassTransitConstants.RegisterProductServiceQueue, e =>
                     {
-
                         e.PrefetchCount = 16;
-                        e.UseMessageRetry(x => x.Exponential(3, TimeSpan.FromSeconds(30), TimeSpan.FromMinutes(100), TimeSpan.FromSeconds(30)));
+                        e.UseMessageRetry(x => x.Interval(2, TimeSpan.FromSeconds(10)));
+                        //  e.Consumer<RegisterProductCommandConsumer>();
                         e.ConfigureConsumer<RegisterProductCommandConsumer>(provider);
-                        //   e.ConfigureConsumer<DenemeCommandConsumer>(provider);
-
-                        EndpointConvention.Map<RegisterProductCommandConsumer>(e.InputAddress);
-                        // EndpointConvention.Map<DenemeCommand>(e.InputAddress);
                     });
                     cfg.ConfigureEndpoints(provider);
                 }));
 
-                services.AddSingleton<IHostedService, BusService>();
-                var conn = Configuration.GetConnectionString("ProductDbConnecton");
-
-                services.AddDbContext<ProductManagementContext>(options =>
-
-                  options.UseSqlServer(conn));//appjson alýnack
-                services.AddMediatR(typeof(GeneralProductOperationeHandlers));
-                //  services.TryAddSingleton<ILogCommand, ILogCommand>();
-                services.AddSwaggerGen();
-                services.AddControllers();
-                // services.AddAutoMapper(typeof(VehicleModel));
             });
+
+            //services.AddMassTransit(config =>
+            //{
+            //    config.AddConsumer<RegisterProductCommandConsumer>();
+            //    // config.AddConsumer<DenemeCommandConsumer>();
+            //    config.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
+            //    {
+            //        cfg.Host(new Uri(RabbitMqMassTransitConstants.RabbitMqUrl), hostConfigurator =>
+            //        {
+            //            hostConfigurator.Username(RabbitMqMassTransitConstants.User);
+            //            hostConfigurator.Password(RabbitMqMassTransitConstants.Password);
+
+            //        });
+
+            //        cfg.ReceiveEndpoint(RabbitMqMassTransitConstants.RegisterProductServiceQueue, e =>
+            //        {
+
+            //            e.PrefetchCount = 16;
+            //            e.UseMessageRetry(x => x.Exponential(3, TimeSpan.FromSeconds(30), TimeSpan.FromMinutes(100), TimeSpan.FromSeconds(30)));
+            //            e.ConfigureConsumer<RegisterProductCommandConsumer>(provider);
+            //            //   e.ConfigureConsumer<DenemeCommandConsumer>(provider);
+
+            //         //   EndpointConvention.Map<RegisterProductCommandConsumer>(e.InputAddress);
+            //            // EndpointConvention.Map<DenemeCommand>(e.InputAddress);
+            //        });
+            //        cfg.ConfigureEndpoints(provider);
+            //    }));
+            //    config.AddRequestClient<CreateProductCommand>();
+            //    //  config.AddRequestClient<DenemeCommand>();
+            //});
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

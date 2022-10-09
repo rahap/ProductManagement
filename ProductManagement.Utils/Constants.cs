@@ -8,7 +8,7 @@ namespace FleetManagement.Utils
     {
         public class Exception
         {
-            public const string NotFoundDeliveryCenterName = "Exception:NotFoundProductName";
+            public const string NotFoundProductName = "Exception:NotFoundProductName";
           
 
 

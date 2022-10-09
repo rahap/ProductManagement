@@ -15,8 +15,7 @@ namespace ProductManagement.API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IBusControl _busControl;
-        private  readonly IMediator _mediator;
-
+      
      
         public ProductController(IBusControl busControl, IMediator mediator)
         {
@@ -33,7 +32,7 @@ namespace ProductManagement.API.Controllers
                 //await _mediator.Send(command);
                 var sendToUri = new Uri($"{RabbitMqMassTransitConstants.RabbitMqUrl }" +
 
-                     $"{RabbitMqMassTransitConstants.RegisterProductServiceQueue}");
+                     $"{RabbitMqMassTransitConstants.RegisterProductServiceCommand}");
 
                 var endPoint = await _busControl.GetSendEndpoint(sendToUri);
                
