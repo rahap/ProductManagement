@@ -3,23 +3,14 @@ using MediatR;
 using Messaging.InterfacesConstants.Constants;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using ProductManagement.Business.StoreBusiness.Handlers;
+using ProductManagement.Business.ProductBusiness.Handlers;
 using ProductManagement.Data.Ef;
 using ProductManagement.MService.Messages.Consumers;
-using ProductManagement.MService.Services;
-using SharedModels.Product.Commands;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace ProductManagement.MService
 {
@@ -42,7 +33,7 @@ namespace ProductManagement.MService
             services.AddDbContext<ProductManagementContext>(options =>
 
               options.UseSqlServer(conn));//appjson alýnack
-            services.AddMediatR(typeof(GeneralStoreOperationeHandlers));
+            services.AddMediatR(typeof(GeneralProductOperationeHandlers));
             //  services.TryAddSingleton<ILogCommand, ILogCommand>();
             services.AddSwaggerGen();
             services.AddMassTransit(config =>

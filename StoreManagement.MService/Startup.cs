@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ProductManagement.Business.StoreBusiness.Handlers;
 using ProductManagement.Data.Ef;
 using ProductManagement.MService.Messages.Consumers;
+using StoreManagement.Business.StoreBusiness.Handlers;
 using System;
 
 namespace StoreManagement.MService
