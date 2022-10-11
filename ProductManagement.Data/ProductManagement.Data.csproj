@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Product\**" />
+    <EmbeddedResource Remove="Product\**" />
+    <None Remove="Product\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.19" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.19" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.19" />
@@ -13,10 +19,6 @@
   <ItemGroup>
     <ProjectReference Include="..\ProductManagement.Utils\ProductManagement.Utils.csproj" />
     <ProjectReference Include="..\SharedModels\SharedModels.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Product\" />
   </ItemGroup>
 
 </Project>

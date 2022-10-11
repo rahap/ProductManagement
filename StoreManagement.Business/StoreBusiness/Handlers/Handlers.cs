@@ -28,7 +28,8 @@ namespace StoreManagement.Business.StoreBusiness.Handlers
         {
 
             var returnObject = new PmResponseModel<CreateStoreProductResponse>();
-            var returnValue = default(CreateStoreProductResponse);
+           
+            var returnValue = new CreateStoreProductResponse();
             try
             {
                 var pr = new Product(request.ProductId, request.ProductName);
