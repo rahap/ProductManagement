@@ -37,7 +37,7 @@ namespace ProductManagement.MService
         {
 
             services.AddHttpClient();
-            var conn = Configuration.GetConnectionString("ProductDbConnecton");
+            var conn = Configuration.GetConnectionString("ProductDbConnection");
 
             services.AddDbContext<ProductManagementContext>(options =>
 
@@ -64,35 +64,7 @@ namespace ProductManagement.MService
 
             });
 
-            //services.AddMassTransit(config =>
-            //{
-            //    config.AddConsumer<RegisterProductCommandConsumer>();
-            //    // config.AddConsumer<DenemeCommandConsumer>();
-            //    config.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
-            //    {
-            //        cfg.Host(new Uri(RabbitMqMassTransitConstants.RabbitMqUrl), hostConfigurator =>
-            //        {
-            //            hostConfigurator.Username(RabbitMqMassTransitConstants.User);
-            //            hostConfigurator.Password(RabbitMqMassTransitConstants.Password);
-
-            //        });
-
-            //        cfg.ReceiveEndpoint(RabbitMqMassTransitConstants.RegisterProductServiceQueue, e =>
-            //        {
-
-            //            e.PrefetchCount = 16;
-            //            e.UseMessageRetry(x => x.Exponential(3, TimeSpan.FromSeconds(30), TimeSpan.FromMinutes(100), TimeSpan.FromSeconds(30)));
-            //            e.ConfigureConsumer<RegisterProductCommandConsumer>(provider);
-            //            //   e.ConfigureConsumer<DenemeCommandConsumer>(provider);
-
-            //         //   EndpointConvention.Map<RegisterProductCommandConsumer>(e.InputAddress);
-            //            // EndpointConvention.Map<DenemeCommand>(e.InputAddress);
-            //        });
-            //        cfg.ConfigureEndpoints(provider);
-            //    }));
-            //    config.AddRequestClient<CreateProductCommand>();
-            //    //  config.AddRequestClient<DenemeCommand>();
-            //});
+       
 
             services.AddControllers();
         }

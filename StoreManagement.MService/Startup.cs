@@ -1,15 +1,17 @@
+
+using MassTransit;
+using MediatR;
+using Messaging.InterfacesConstants.Constants;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using ProductManagement.Business.Store.Handlers;
+using ProductManagement.Data.Ef;
+using ProductManagement.MService.Messages.Consumers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace StoreManagement.MService
 {
@@ -25,6 +27,36 @@ namespace StoreManagement.MService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient();
+            var conn = Configuration.GetConnectionString("StoreProductDbConnection");
+
+            services.AddDbContext<ProductManagementContext>(options =>
+
+              options.UseSqlServer(conn));//appjson alýnack
+            services.AddMediatR(typeof(GeneralStoreOperationeHandlers));
+            //  services.TryAddSingleton<ILogCommand, ILogCommand>();
+            services.AddSwaggerGen();
+            services.AddMassTransit(config =>
+            {
+                config.AddConsumer<RegisterStoreProductCommandConsumer>();
+
+                config.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
+                {
+                    cfg.Host("localhost", "/", h => { });
+                    cfg.ReceiveEndpoint(RabbitMqMassTransitConstants.RegisterStoreProductServiceQueue, e =>
+                    {
+                        e.PrefetchCount = 16;
+                        e.UseMessageRetry(x => x.Interval(2, TimeSpan.FromSeconds(10)));
+                        //  e.Consumer<RegisterProductCommandConsumer>();
+                        e.ConfigureConsumer<RegisterStoreProductCommandConsumer>(provider);
+                    });
+                    cfg.ConfigureEndpoints(provider);
+                }));
+
+            });
+
+
+
             services.AddControllers();
         }
 
@@ -35,7 +67,11 @@ namespace StoreManagement.MService
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<ProductManagementContext>();
+                context.Database.EnsureCreated();
+            }
             app.UseHttpsRedirection();
 
             app.UseRouting();

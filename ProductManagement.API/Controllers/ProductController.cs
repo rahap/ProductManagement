@@ -20,7 +20,7 @@ namespace ProductManagement.API.Controllers
         public ProductController(IBusControl busControl, IMediator mediator)
         {
             _busControl = busControl;
-            _mediator = mediator;
+         
         }
 
         [HttpPost]

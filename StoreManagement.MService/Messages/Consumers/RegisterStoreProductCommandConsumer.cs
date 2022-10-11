@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace ProductManagement.MService.Messages.Consumers
 {
-    public class RegisterProductCommandConsumer : IConsumer<CreateProductCommand>
+    public class RegisterStoreProductCommandConsumer : IConsumer<CreateProductCommand>
     {
         private readonly IMediator _mediator;
 
         private readonly ProductManagementContext _context;
 
-        public RegisterProductCommandConsumer(
+        public RegisterStoreProductCommandConsumer(
           IMediator mediator
         )
         {

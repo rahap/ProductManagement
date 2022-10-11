@@ -13,5 +13,7 @@ namespace Messaging.InterfacesConstants.Constants
         public const string Password = "guest";
         public const string RegisterProductServiceCommand= "/register.product.command";
         public const string RegisterProductServiceQueue = "productManagement.register.product";
+        public const string RegisterStoreProductServiceCommand = "/register.storeProduct.command";
+        public const string RegisterStoreProductServiceQueue = "productManagement.register.storeProduct";
     }
 }
