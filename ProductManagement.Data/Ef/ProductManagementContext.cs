@@ -67,19 +67,10 @@ namespace ProductManagement.Data.Ef
         }
 
 
-        
-        //https://stackoverflow.com/questions/51808912/the-child-dependent-side-could-not-be-determined-for-the-one-to-one-relationship/51809814
-        //https://stackoverflow.com/questions/53681739/how-to-define-foreign-key-relationship-in-ef-core-2-1
-        //https://www.jerriepelser.com/blog/store-dictionary-as-json-using-ef-core-21/
-        //https://stackoverflow.com/questions/42355481/auto-create-database-in-entity-framework-core
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
                 modelBuilder.Entity<Product>();
-          
 
-
-        
-         
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

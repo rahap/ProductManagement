@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.MService"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreManagement.MService", "StoreManagement.MService\StoreManagement.MService.csproj", "{2778A975-79B0-4507-B0A1-CD63260593A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreManagement.Business", "StoreManagement.Business\StoreManagement.Business.csproj", "{80C6470F-2506-4C42-80EC-609D9CCC25DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreManagement.Business", "StoreManagement.Business\StoreManagement.Business.csproj", "{80C6470F-2506-4C42-80EC-609D9CCC25DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

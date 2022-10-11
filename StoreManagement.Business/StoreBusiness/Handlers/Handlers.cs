@@ -35,10 +35,10 @@ namespace StoreManagement.Business.StoreBusiness.Handlers
                 var pr = new Product(request.ProductId, request.ProductName);
                 _context.AddCustom(pr);
                 await _context.SaveChangesAsync();
-                returnValue.Id = pr.Id;
-                returnValue.Name = pr.Name;
-                returnValue.ProductionId = pr.ProductId;
-                returnObject.Data = returnValue;
+                //returnValue.Id = pr.Id;
+                //returnValue.Name = pr.Name;
+                //returnValue.ProductionId = pr.ProductId;
+                //returnObject.Data = returnValue;
                 return returnObject;
             }catch(Exception ex)
             {
