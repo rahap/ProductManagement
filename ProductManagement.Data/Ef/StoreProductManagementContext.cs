@@ -1,6 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using ProductManagement.Data.Ef.Extensions;
+using ProductManagement.Data.Entities;
+using ProductManagement.Data.Entities.StoreManagementEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +22,7 @@ namespace ProductManagement.Data.Ef
         }
 
 
-        public StoreProductManagementContext(DbContextOptions<ProductManagementContext> options) : base(options)
+        public StoreProductManagementContext(DbContextOptions<StoreProductManagementContext> options) : base(options)
         {
 
         }
@@ -72,12 +74,13 @@ namespace ProductManagement.Data.Ef
         //https://stackoverflow.com/questions/42355481/auto-create-database-in-entity-framework-core
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //     modelBuilder.Entity<DeliveryPoint>();
-          
+            modelBuilder.Entity<Product>();
 
 
-        
-         
+
+
+
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -10,5 +10,6 @@ namespace SharedModels.Store.Commands
    public class CreateStoreProductCommand : ICommandMassegeBase,IRequest<PmResponseModel<CreateStoreProductResponse>>
     {
         public int ProductId { get; set; }
+        public string ProductName { get; set; }
     }
 }

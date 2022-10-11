@@ -2,6 +2,7 @@
 using MediatR;
 using ProductManagement.Data.Ef;
 using SharedModels.Product.Commands;
+using SharedModels.Store.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace ProductManagement.MService.Messages.Consumers
 {
-    public class RegisterStoreProductCommandConsumer : IConsumer<CreateProductCommand>
+    public class RegisterStoreProductCommandConsumer : IConsumer<CreateStoreProductCommand>
     {
         private readonly IMediator _mediator;
 
-        private readonly ProductManagementContext _context;
+ 
 
         public RegisterStoreProductCommandConsumer(
           IMediator mediator
@@ -22,12 +23,14 @@ namespace ProductManagement.MService.Messages.Consumers
          
             _mediator = mediator;
         }
-        public Task Consume(ConsumeContext<CreateProductCommand> context)
+        public Task Consume(ConsumeContext<CreateStoreProductCommand> context)
         {
-            var z = this._context;
+          
             
-             _mediator.Send(new CreateProductCommand { Name= context.Message.Name });
-            throw new NotImplementedException();
+            return  _mediator.Send(new CreateStoreProductCommand 
+            { ProductName = context.Message.ProductName,ProductId=context.Message.ProductId });
+            
+        
         }
     }
 }

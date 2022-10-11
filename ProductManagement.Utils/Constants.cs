@@ -9,11 +9,11 @@ namespace FleetManagement.Utils
         public class Exception
         {
             public const string NotFoundProductName = "Exception:NotFoundProductName";
-          
-
-
+            public const string NotFoundProduct = "Exception:NotFoundProduct";
 
             
+
+
 
         }
     }

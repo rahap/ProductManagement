@@ -17,7 +17,7 @@ namespace ProductManagement.API.Controllers
         private readonly IBusControl _busControl;
       
      
-        public ProductController(IBusControl busControl, IMediator mediator)
+        public ProductController(IBusControl busControl)
         {
             _busControl = busControl;
          

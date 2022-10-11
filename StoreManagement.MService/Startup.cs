@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ProductManagement.Business.Store.Handlers;
+using ProductManagement.Business.StoreBusiness.Handlers;
 using ProductManagement.Data.Ef;
 using ProductManagement.MService.Messages.Consumers;
 using System;
@@ -30,7 +30,7 @@ namespace StoreManagement.MService
             services.AddHttpClient();
             var conn = Configuration.GetConnectionString("StoreProductDbConnection");
 
-            services.AddDbContext<ProductManagementContext>(options =>
+            services.AddDbContext<StoreProductManagementContext>(options =>
 
               options.UseSqlServer(conn));//appjson alýnack
             services.AddMediatR(typeof(GeneralStoreOperationeHandlers));
@@ -69,7 +69,7 @@ namespace StoreManagement.MService
             }
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
-                var context = serviceScope.ServiceProvider.GetRequiredService<ProductManagementContext>();
+                var context = serviceScope.ServiceProvider.GetRequiredService<StoreProductManagementContext>();
                 context.Database.EnsureCreated();
             }
             app.UseHttpsRedirection();

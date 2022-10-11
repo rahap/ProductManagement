@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using ProductManagement.Business.Product.Handlers;
+using ProductManagement.Business.StoreBusiness.Handlers;
 using ProductManagement.Data.Ef;
 using ProductManagement.MService.Messages.Consumers;
 using ProductManagement.MService.Services;
@@ -42,7 +42,7 @@ namespace ProductManagement.MService
             services.AddDbContext<ProductManagementContext>(options =>
 
               options.UseSqlServer(conn));//appjson alýnack
-            services.AddMediatR(typeof(GeneralProductOperationeHandlers));
+            services.AddMediatR(typeof(GeneralStoreOperationeHandlers));
             //  services.TryAddSingleton<ILogCommand, ILogCommand>();
             services.AddSwaggerGen();
             services.AddMassTransit(config =>

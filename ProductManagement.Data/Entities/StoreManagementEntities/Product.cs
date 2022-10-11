@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace ProductManagement.Data.Entities
+namespace ProductManagement.Data.Entities.StoreManagementEntities
 {
    
 
@@ -13,23 +13,24 @@ namespace ProductManagement.Data.Entities
     public class Product : Entity<Product>
     {
 
-        public Product()
+        protected Product()
         {
         }
 
-        public Product(string name)
+        public Product(int productId,string name)
         {
 
             IsDeleted = false;
             Name = name;
-         
+            ProductId = productId;
 
         }
 
 
         [ValidatorAttributes.RequiredAttribute(Constants.Exception.NotFoundProductName)]
         public virtual string Name { get; set; }
+        [ValidatorAttributes.NotZero(Constants.Exception.NotFoundProduct)]
+        public virtual int ProductId { get; set; }
 
-    
     }
 }

@@ -8,6 +8,7 @@ namespace SharedModels.Store.Responses
     {
         public string Name { get; set; }
         public int Id { get; set; }
+        public int ProductionId { get; set; }
 
     }
 }
