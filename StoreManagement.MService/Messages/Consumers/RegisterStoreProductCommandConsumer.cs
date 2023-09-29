@@ -28,7 +28,9 @@ namespace ProductManagement.MService.Messages.Consumers
           
             
             return  _mediator.Send(new CreateStoreProductCommand 
-            { ProductName = context.Message.ProductName,ProductId=context.Message.ProductId });
+            {  ProductId=context.Message.ProductId,
+                ProductName = context.Message.ProductName
+            });
             
         
         }

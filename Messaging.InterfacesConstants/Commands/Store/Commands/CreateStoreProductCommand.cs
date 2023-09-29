@@ -7,9 +7,9 @@ using System.Text;
 
 namespace SharedModels.Store.Commands
 {
-   public class CreateStoreProductCommand : ICommandMassegeBase,IRequest<PmResponseModel<CreateStoreProductResponse>>
+   public class CreateStoreProductCommand : ICommandMessageBase,IRequest<PmResponseModel<CreateStoreProductResponse>>
     {
         public int ProductId { get; set; }
-        public string ProductName { get; set; }
+         public string ProductName { get; set; }
     }
 }

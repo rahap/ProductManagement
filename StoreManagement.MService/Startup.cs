@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProductManagement.Data.Ef;
 using ProductManagement.MService.Messages.Consumers;
+using SharedModels.Product.Commands;
 using StoreManagement.Business.StoreBusiness.Handlers;
 using System;
 
@@ -43,7 +44,7 @@ namespace StoreManagement.MService
                 config.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
                     cfg.Host("localhost", "/", h => { });
-                    cfg.ReceiveEndpoint(RabbitMqMassTransitConstants.RegisterStoreProductServiceQueue, e =>
+                    cfg.ReceiveEndpoint(RabbitMqMassTransitConstants.RegisterProductServiceQueue, e =>
                     {
                         e.PrefetchCount = 16;
                         e.UseMessageRetry(x => x.Interval(2, TimeSpan.FromSeconds(10)));

@@ -4,9 +4,8 @@ using System.Text;
 
 namespace Messaging.InterfacesConstants.Commands
 {
-   public interface IRegisterProductCommand
+   public abstract class ICommandMessageBase
     {
-        public string ProductName { get; set; }
-        public int ProductId { get; set; }
+        public Guid MessageId { get; set; }
     }
 }

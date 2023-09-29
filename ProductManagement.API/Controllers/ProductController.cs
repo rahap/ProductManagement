@@ -29,10 +29,12 @@ namespace ProductManagement.API.Controllers
             try
             {
 
+               // var x = RabbitMqMassTransitConstants.RegisterProductServiceCommand;
+
                 //await _mediator.Send(command);
                 var sendToUri = new Uri($"{RabbitMqMassTransitConstants.RabbitMqUrl }" +
 
-                     $"{RabbitMqMassTransitConstants.RegisterProductServiceCommand}");
+                     $"{RabbitMqMassTransitConstants.ProductSaga}");
 
                 var endPoint = await _busControl.GetSendEndpoint(sendToUri);
                

@@ -15,5 +15,7 @@ namespace Messaging.InterfacesConstants.Constants
         public const string RegisterProductServiceQueue = "productManagement.register.product";
         public const string RegisterStoreProductServiceCommand = "/register.storeProduct.command";
         public const string RegisterStoreProductServiceQueue = "storeManagement.register.product";
+        public const string ProductSaga = "/productMangamenet.productSaga";
+        public const string ProductSagaQ = "productMangamenet.productSaga";
     }
 }

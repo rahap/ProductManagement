@@ -22,6 +22,7 @@
     <ProjectReference Include="..\ProductManagement.Business\ProductManagement.Business.csproj" />
     <ProjectReference Include="..\ProductManagement.Data\ProductManagement.Data.csproj" />
     <ProjectReference Include="..\ProductManagement.Utils\ProductManagement.Utils.csproj" />
+    <ProjectReference Include="..\ProductSagaMachine\ProductSagaMachine.csproj" />
     <ProjectReference Include="..\SharedModels\SharedModels.csproj" />
     <ProjectReference Include="..\StoreManagement.Business\StoreManagement.Business.csproj" />
   </ItemGroup>

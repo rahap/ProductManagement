@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ProductManagement.MService.Messages.Consumers
 {
@@ -40,9 +41,10 @@ namespace ProductManagement.MService.Messages.Consumers
 
             //await endPoint.Send<CreateStoreProductCommand>(new CreateStoreProductCommand
             //{ ProductId=result.Id, ProductName=result.Name});
-
-            await context.Publish<CreateStoreProductCommand>(new
-            { ProductId = result.Id, ProductName = result.Name });
+            await context.Publish<CreateStoreProductCommand>(
+              new { ProductId = result.Id, ProductName= result.Name, 
+                  MessageId = context.Message.MessageId, });
+        
         }
     }
 }

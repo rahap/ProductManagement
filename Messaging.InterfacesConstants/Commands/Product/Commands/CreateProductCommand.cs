@@ -7,10 +7,10 @@ using System.Text;
 
 namespace SharedModels.Product.Commands
 {
-    public class CreateProductCommand : ICommandMassegeBase,IRequest<PmResponseModel<CreateProductResponse>>
+    public class CreateProductCommand : ICommandMessageBase, IRequest<PmResponseModel<CreateProductResponse>>
     {
         public string Name { get; set; }
-    
+
 
 
     }  
